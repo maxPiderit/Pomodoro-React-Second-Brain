@@ -1,15 +1,18 @@
 import ReactSlider from 'react-slider';
 import './slider.css'
 import SettingsContext from "./SettingsContext";
-import {useContext} from "react";
+import { useContext, useState } from "react";
 import BackButton from "./BackButton";
 
 
 function Settings() {
   const settingsInfo = useContext(SettingsContext);
-  return(
-    <div style={{textAlign:'left'}}>
-      <label>work: {settingsInfo.workMinutes}:00</label>
+  const [numPreguntas, setNumPreguntas] = useState(5)
+
+
+  return (
+    <div style={{ textAlign: 'left' }}>
+      <label>estudio: {settingsInfo.workMinutes} minutos</label>
       <ReactSlider
         className={'slider'}
         thumbClassName={'thumb'}
@@ -19,7 +22,17 @@ function Settings() {
         min={1}
         max={120}
       />
-      <label>break: {settingsInfo.breakMinutes}:00</label>
+      <label>número de preguntas: {numPreguntas}</label>
+      <ReactSlider
+        className={'slider yellow'}
+        thumbClassName={'thumb'}
+        trackClassName={'track'}
+        value={numPreguntas}
+        onChange={newValue => setNumPreguntas(newValue)}
+        min={1}
+        max={25}
+      />
+      <label>Descanso: {settingsInfo.breakMinutes} minutos</label>
       <ReactSlider
         className={'slider green'}
         thumbClassName={'thumb'}
@@ -29,8 +42,8 @@ function Settings() {
         min={1}
         max={120}
       />
-      <div style={{textAlign:'center', marginTop:'20px'}}>
-        <BackButton onClick={() => settingsInfo.setShowSettings(false)} />
+      <div style={{ textAlign: 'center', marginTop: '20px' }}>
+        <BackButton onClick={() => settingsInfo.setShowSettings(true)} />
       </div>
 
     </div>

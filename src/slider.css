@@ -12,9 +12,18 @@
     border-radius: 20px;
 }
 
+.slider.yellow{
+    border: 2px solid var(--yellow);
+}
+
+.slider.yellow .thumb{
+    background-color: var(--yellow);
+}
+
 .slider.green{
     border: 2px solid var(--green);
 }
+
 .slider.green .thumb{
     background-color: var(--green);
 }
